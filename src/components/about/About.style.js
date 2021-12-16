@@ -1,22 +1,20 @@
-import { StyleSheet } from 'react-native';
 import { COLOR } from 'global/styles';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    height: '80%',
-    backgroundColor: COLOR.accent,
-  },
-  inner: {
-    backgroundColor: COLOR.dark,
-    borderTopLeftRadius: 75,
-    height: '100%',
-    paddingHorizontal: '5%',
-    //alignItems: 'center',
+    flex: 1,
+    alignSelf: 'center',
+    marginTop: 40,
   },
   appContainer: {
+    alignContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
+  },
+  text: {
+    color: COLOR.primary,
+    marginVertical: 20,
+    fontSize: 16,
   },
   links: {
     marginBottom: 20,
@@ -25,11 +23,10 @@ export default StyleSheet.create({
   },
   linkContainer: {
     justifyContent: 'flex-end',
+    flex: 1,
     padding: 16,
   },
-  text: {
-    color: COLOR.primary,
-    marginVertical: 15,
-    fontSize: 16,
+  image: {
+    resizeMode: 'center',
   },
 });

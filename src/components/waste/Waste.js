@@ -22,15 +22,36 @@ const Waste = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>You Have Wasted</Text>
-      <View style={styles.card}><Text style={styles.item}>{data?.seconds}</Text><Text style={styles.item}>Seconds</Text></View>
-      <View style={styles.card}><Text style={styles.item}>{data?.minute}</Text><Text style={styles.item}>Minutes</Text></View>
-      <View style={styles.card}><Text style={styles.item}>{data?.hour}</Text><Text style={styles.item}>Hours</Text></View>
-      <View style={styles.card}><Text style={styles.item}>{data?.day}</Text><Text style={styles.item}>Days</Text></View>
-      <View style={styles.card}><Text style={styles.item}>{data?.week}</Text><Text style={styles.item}>Weeks</Text></View>
-      <View style={styles.card}><Text style={styles.item}>{data?.month}</Text><Text style={styles.item}>Months</Text></View>
-      <View style={styles.card}><Text style={styles.item}>{data?.years}</Text><Text style={styles.item}>Years</Text></View>
+      <View style={styles.card}>
+        <Text style={styles.item}>{data?.seconds}</Text>
+        <Text style={styles.item}>Seconds</Text>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.item}>{data?.minute}</Text>
+        <Text style={styles.item}>Minutes</Text>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.item}>{data?.hour}</Text>
+        <Text style={styles.item}>Hours</Text>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.item}>{data?.day}</Text>
+        <Text style={styles.item}>Days</Text>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.item}>{data?.week}</Text>
+        <Text style={styles.item}>Weeks</Text>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.item}>{data?.month}</Text>
+        <Text style={styles.item}>Months</Text>
+      </View>
+      <View style={styles.card}>
+        <Text style={styles.item}>{data?.years}</Text>
+        <Text style={styles.item}>Years</Text>
+      </View>
     </View>
-  )
+  );
 };
 
 export default Waste;

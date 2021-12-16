@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import dayjs from 'dayjs';
 import { productionIDs, testIDs } from 'global/config';
+import AdMob, { InterstitialAd, RewardedAd } from '@react-native-admob/admob';
+let AD_MOB_INIT = false;
 
 export const getFromStorage = async key => {
   try {
@@ -44,16 +46,44 @@ export const getBirthdayData = date => {
   };
 };
 
-// export const getadUnitID = key => {
-//   return Constants.isDevice && !__DEV__ ? productionIDs[key] : testIDs[key];
-// };
+export const showFullScreenAd = async personalizedAds => {
+  try {
+    let _adv = InterstitialAd.createAd(getadUnitID('fullScreen'), {
+      requestNonPersonalizedAdsOnly: !personalizedAds,
+    });
+    await _adv.load({
+      requestNonPersonalizedAdsOnly: !personalizedAds,
+    });
+    await _adv.show();
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-// export const showFullScreenAds = async (personalizedAds = false) => {
-//   await AdMobInterstitial.setAdUnitID(getadUnitID('fullScreen'));
-//   await AdMobInterstitial.requestAdAsync({
-//     servePersonalizedAds: personalizedAds,
-//   });
-//   await AdMobInterstitial.showAdAsync();
-// };
+export const showRewardAd = async personalizedAds => {
+  let _adv;
+  try {
+    await initAdMob();
+    _adv = RewardedAd.createAd(getadUnitID('reward'), {
+      requestNonPersonalizedAdsOnly: !personalizedAds,
+    });
+    await _adv.load({
+      requestNonPersonalizedAdsOnly: !personalizedAds,
+    });
+    return _adv;
+  } catch (err) {
+    throw err;
+  } finally {
+  }
+};
 
+export const initAdMob = async () => {
+  if (!AD_MOB_INIT) {
+    await AdMob.initialize();
+    AD_MOB_INIT = true;
+  }
+};
 
+export const getadUnitID = key => {
+  return !__DEV__ ? productionIDs[key] : testIDs[key];
+};

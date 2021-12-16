@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: 'red',
     flex: 1,
   },
   heading: {
@@ -21,10 +20,11 @@ export default StyleSheet.create({
     margin: 8,
     borderRadius: 20,
     flexDirection: 'column',
+    justifyContent: 'center',
   },
   item: {
     fontSize: 28,
-    fontFamily: 'digit',
+    fontFamily: 'Black',
     textAlign: 'center',
-  }
-})
+  },
+});

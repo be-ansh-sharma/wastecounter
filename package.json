@@ -11,6 +11,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-admob/admob": "^1.5.1",
     "@react-native-async-storage/async-storage": "^1.15.14",
     "@react-native-community/datetimepicker": "^5.0.1",
     "@react-navigation/material-top-tabs": "^6.0.6",
@@ -27,6 +28,7 @@
     "react-native-screens": "^3.10.1",
     "react-native-tab-view": "^3.1.1",
     "react-native-vector-icons": "^9.0.0",
+    "react-native-version-check": "^3.4.2",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1"

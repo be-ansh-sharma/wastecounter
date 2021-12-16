@@ -1,27 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { Dimensions, View } from 'react-native';
-import { AdMobBanner } from 'expo-ads-admob';
-import { getadUnitID } from 'global/helpers/utils';
-import { useSelector } from 'react-redux';
+import { BannerAd } from '@react-native-admob/admob';
+import { getadUnitID, initAdMob, getDiff } from 'global/helpers/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRewardTime } from 'store/action/game';
 
 const screenWidth = Dimensions.get('window').width;
 
 const SmartBanner = () => {
-  const [error, setError] = useState(true);
+  const [error, setError] = useState(false);
   const [hasAds, setHasAds] = useState(false);
+  const [loading, setLoading] = useState(true);
   const bannerError = () => setError(true);
   const adsReceived = () => setHasAds(true);
-  const { personalizedAds } = useSelector(state => state.game);
+  const dispatch = useDispatch();
+  const { personalizedAds, adsRewardTime } = useSelector(state => state.game);
 
   useEffect(() => {
-    const exitScreenTimer = setTimeout(() => setError(false), 3000);
+    if (loading && !adsRewardTime) {
+      const init = async () => {
+        await initAdMob();
+        setLoading(false);
+      };
+      init();
+    }
+  }, []);
 
-    return () => {
-      clearTimeout(exitScreenTimer);
-    };
-  });
+  if (adsRewardTime) {
+    if (getDiff(adsRewardTime, 'hour') > 4) {
+      dispatch(setRewardTime(null));
+    } else {
+      return null;
+    }
+  }
 
-  if (error) {
+  if (error || loading) {
     return null;
   }
 
@@ -30,12 +43,14 @@ const SmartBanner = () => {
       style={
         hasAds ? { width: screenWidth } : { height: 0, width: screenWidth }
       }>
-      <AdMobBanner
-        bannerSize="fullBanner"
-        adUnitID={getadUnitID('banner')}
-        servePersonalizedAds={personalizedAds}
-        onDidFailToReceiveAdWithError={bannerError}
-        onAdViewDidReceiveAd={adsReceived}
+      <BannerAd
+        size="FULL_BANNER"
+        unitId={getadUnitID('banner')}
+        onAdFailedToLoad={bannerError}
+        onAdLoaded={adsReceived}
+        requestOptions={{
+          requestNonPersonalizedAdsOnly: !personalizedAds,
+        }}
       />
     </View>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
-//import About from 'components/about/About';
-// import Attribution from 'components/settings/attribution/Attribution';
-// import Consent from 'components/settings/consent/Consent';
+import About from 'components/about/About';
+import Attribution from 'components/attribution/Attribution';
 
 const Modal = ({ route }) => {
   const { type } = route?.params;
@@ -12,9 +11,6 @@ const Modal = ({ route }) => {
       break;
     case 'attribution':
       Component = Attribution;
-      break;
-    case 'consent':
-      Component = Consent;
       break;
   }
 
