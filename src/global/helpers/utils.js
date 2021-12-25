@@ -87,3 +87,7 @@ export const initAdMob = async () => {
 export const getadUnitID = key => {
   return !__DEV__ ? productionIDs[key] : testIDs[key];
 };
+
+export const getCurrentDate = () => {
+  return dayjs().toString();
+};

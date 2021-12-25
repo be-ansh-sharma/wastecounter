@@ -24,7 +24,7 @@ const About = () => {
 
   const rateUsHandler = () => {
     Linking.openURL(
-      'https://play.google.com/store/apps/details?id=com.epoch.drinkingbuddy',
+      'https://play.google.com/store/apps/details?id=com.epoch.wastecounter',
     ).catch(err => console.error('An error occurred', err));
   };
 
