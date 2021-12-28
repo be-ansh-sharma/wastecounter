@@ -45,7 +45,7 @@ const General = props => {
 
   const rateUsHandler = () => {
     Linking.openURL(
-      'https://play.google.com/store/apps/details?id=com.epoch.wastecounter',
+      'https://play.google.com/store/apps/details?id=com.wastecounter',
     ).catch(err => console.error('An error occurred', err));
   };
 

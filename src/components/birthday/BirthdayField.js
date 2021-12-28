@@ -8,10 +8,10 @@ import { COLOR } from 'global/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBirthday } from 'store/action/game';
 
-const BirthdayField = ({ inEditMode }) => {
+const BirthdayField = ({ inEditMode, callback }) => {
   const birthdayDate = useSelector(state => state.game.birthday);
   const [date, setDate] = useState(
-    birthdayDate || new Date('1994-04-20T00:00:00.000Z'),
+    new Date(birthdayDate || '1994-04-20T00:00:00.000Z'),
   );
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -25,7 +25,10 @@ const BirthdayField = ({ inEditMode }) => {
   const onChange = (_, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(false);
-    setDate(currentDate);
+    setDate(new Date(currentDate));
+    if (callback) {
+      callback(new Date(currentDate));
+    }
   };
 
   const submitHandler = () => {
