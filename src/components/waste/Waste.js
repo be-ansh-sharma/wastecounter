@@ -17,7 +17,7 @@ const Waste = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [birthday]);
 
   return (
     <View style={styles.container}>
